@@ -34,6 +34,11 @@ class CleanupCommand extends Command
         $deleted = 0;
         $totalSize = 0;
 
+        if (!Storage::disk($disk)->exists($basePath)) {
+            $this->warn("No images found in: {$basePath}");
+            return self::SUCCESS;
+        }
+
         $directories = Storage::disk($disk)->directories($basePath);
 
         foreach ($directories as $dir) {

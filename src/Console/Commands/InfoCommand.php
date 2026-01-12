@@ -3,7 +3,7 @@
 namespace SAHM\ImageOptimizer\Console\Commands;
 
 use Illuminate\Console\Command;
-use SAHM\ImageOptimizer\Facades\ImageOptimizer;
+use SAHM\ImageOptimizer\Services\ImageOptimizationService;
 
 class InfoCommand extends Command
 {
@@ -16,8 +16,11 @@ class InfoCommand extends Command
         $this->info('SAHM Laravel Image Optimizer - System Information');
         $this->newLine();
 
+        // Get service from container
+        $optimizer = app(ImageOptimizationService::class);
+
         // Processor Info
-        $processorInfo = ImageOptimizer::getProcessorInfo();
+        $processorInfo = $optimizer->getProcessorInfo();
         
         $this->info('Available Processors:');
         $this->table(

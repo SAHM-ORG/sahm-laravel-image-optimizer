@@ -4,7 +4,7 @@ namespace SAHM\ImageOptimizer\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Http\UploadedFile;
-use SAHM\ImageOptimizer\Facades\ImageOptimizer;
+use SAHM\ImageOptimizer\Services\ImageOptimizationService;
 use Symfony\Component\HttpFoundation\File\File;
 
 class OptimizeCommand extends Command
@@ -50,6 +50,7 @@ class OptimizeCommand extends Command
         $progressBar = $this->output->createProgressBar($total);
         $progressBar->start();
 
+        $optimizer = app(ImageOptimizationService::class);
         $optimized = 0;
         $failed = 0;
         $totalSaved = 0;
@@ -64,7 +65,7 @@ class OptimizeCommand extends Command
                     true
                 );
 
-                $imageData = ImageOptimizer::optimize($uploadedFile, $options);
+                $imageData = $optimizer->optimize($uploadedFile, $options);
                 
                 $saved = $imageData->metadata['original']['size'] - $imageData->metadata['optimized']['size'];
                 $totalSaved += $saved;
@@ -100,7 +101,6 @@ class OptimizeCommand extends Command
     private function getImageFiles(string $path, bool $recursive): array
     {
         $extensions = config('image-optimizer.validation.allowed_extensions', ['jpg', 'jpeg', 'png', 'webp']);
-        $pattern = '{' . implode(',', $extensions) . '}';
 
         $flags = $recursive ? (\FilesystemIterator::SKIP_DOTS | \FilesystemIterator::UNIX_PATHS) : 0;
         $iterator = $recursive 
