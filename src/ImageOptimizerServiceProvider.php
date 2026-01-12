@@ -1,6 +1,6 @@
 <?php
 
-namespace SahmImageOptimizer;
+namespace SAHM\ImageOptimizer;
 
 use Illuminate\Support\ServiceProvider;
 

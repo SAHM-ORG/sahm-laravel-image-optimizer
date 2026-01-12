@@ -54,7 +54,7 @@
             "SAHM\\ImageOptimizer\\": "src/"
         },
         "files": [
-            "src/Helpers/ImageHelper.php"
+            "src/Helpers/ImageHelpers.php"
         ]
     },
     "autoload-dev": {
