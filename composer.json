@@ -1,0 +1,89 @@
+{
+    "name": "sahm-org/sahm-laravel-image-optimizer",
+    "description": "Professional backend image optimization for Laravel with WebP/AVIF conversion, responsive variants, and Lighthouse optimization. No database required.",
+    "keywords": [
+        "sahm",
+        "laravel",
+        "image",
+        "optimization",
+        "webp",
+        "avif",
+        "lighthouse",
+        "performance",
+        "lcp",
+        "core-web-vitals",
+        "responsive-images",
+        "imagick",
+        "gd"
+    ],
+    "homepage": "https://github.com/sahm-org/sahm-laravel-image-optimizer",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "SAHM",
+            "email": "info@sahm.com",
+            "role": "Organization"
+        },
+        {
+            "name": "Omar Dallah",
+            "email": "omar@example.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.2|^8.3",
+        "illuminate/support": "^11.0|^12.0",
+        "illuminate/filesystem": "^11.0|^12.0",
+        "illuminate/http": "^11.0|^12.0",
+        "illuminate/contracts": "^11.0|^12.0",
+        "ext-imagick": "*",
+        "ext-gd": "*",
+        "ext-json": "*",
+        "ext-fileinfo": "*"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^9.0",
+        "phpunit/phpunit": "^11.0",
+        "mockery/mockery": "^1.6",
+        "phpstan/phpstan": "^1.10",
+        "laravel/pint": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "SAHM\\ImageOptimizer\\": "src/"
+        },
+        "files": [
+            "src/Helpers/helpers.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "SAHM\\ImageOptimizer\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "SAHM\\ImageOptimizer\\ImageOptimizerServiceProvider"
+            ],
+            "aliases": {
+                "ImageOptimizer": "SAHM\\ImageOptimizer\\Facades\\ImageOptimizer"
+            }
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage",
+        "analyse": "vendor/bin/phpstan analyse",
+        "format": "vendor/bin/pint"
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "php-http/discovery": true
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}

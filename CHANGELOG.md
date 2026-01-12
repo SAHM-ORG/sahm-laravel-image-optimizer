@@ -1,8 +1,6 @@
 # Changelog
 
-All notable changes to `sahm/laravel-image-optimizer` will be documented in this file.
-
-## [Unreleased]
+All notable changes to `sahm-org/sahm-laravel-image-optimizer` will be documented in this file.
 
 ## [1.0.0] - 2026-01-12
 
